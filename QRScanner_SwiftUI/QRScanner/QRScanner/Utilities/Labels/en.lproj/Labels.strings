@@ -1,0 +1,10 @@
+/* 
+  Labels.strings
+  QRScanner
+
+  Created by Jesus Perea on 2025-01-03
+  
+*/
+
+"lbl.home" = "Home";
+"lbl.authRequired" = "To start the scan, please login";

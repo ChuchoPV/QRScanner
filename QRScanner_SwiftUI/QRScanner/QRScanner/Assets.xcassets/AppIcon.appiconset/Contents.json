@@ -1,0 +1,38 @@
+{
+  "images" : [
+    {
+      "filename" : "DALL·E 2025-03-01 21.13.57 - A modern app icon representing a QR code scanner. The icon features a sleek, minimalistic QR code in the center with a subtle scanning beam effect pas.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "DALL·E 2025-03-01 21.13.57 - A modern app icon representing a QR code scanner. The icon features a sleek, minimalistic QR code in the center with a subtle scanning beam effect pas 1.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "tinted"
+        }
+      ],
+      "filename" : "DALL·E 2025-03-01 21.13.57 - A modern app icon representing a QR code scanner. The icon features a sleek, minimalistic QR code in the center with a subtle scanning beam effect pas 2.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
