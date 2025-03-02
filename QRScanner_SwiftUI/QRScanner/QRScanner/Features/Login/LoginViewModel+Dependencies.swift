@@ -11,3 +11,8 @@ struct LoginViewDependencies {
     
     let login: LoginUseCaseType
 }
+
+enum LoginRoutes: String {
+    case fallback
+}
+

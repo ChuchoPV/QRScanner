@@ -7,4 +7,8 @@
 
 import Foundation
 
-enum Titles {}
+enum Titles {
+    
+    static let enterPinTitle = "title.enterPinTitle".localized(from: .titles)
+    static let enterPinSubtitle = "title.enterPinSubtitle".localized(from: .titles)
+}

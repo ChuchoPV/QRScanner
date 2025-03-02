@@ -12,8 +12,8 @@ class LoginViewViewModel: ObservableObject {
     
     // MARK: Properties
     @Published var isLoading = false
-    @Published var loginStatus: LoginStatus?
     @Published var error: Error?
+    @Published var path = [LoginRoutes]()
     
     // MARK: Private
     var cancellables: [AnyCancellable] = []
@@ -29,6 +29,7 @@ extension LoginViewViewModel {
     
     func login() {
         dependencies.login.execute()
+            .receive(on: RunLoop.main)
             .sink { [weak self] completion in
                 switch completion {
                 case .finished:
@@ -37,7 +38,12 @@ extension LoginViewViewModel {
                     self?.error = error
                 }
             } receiveValue: { [weak self] status in
-                self?.loginStatus = status
+                switch status {
+                case .fallback:
+                    self?.path.append(.fallback)
+                default:
+                    break
+                }
             }
             .store(in: &cancellables)
     }

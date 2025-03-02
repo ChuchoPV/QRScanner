@@ -6,39 +6,38 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LoginViewView<ViewModel: LoginViewViewModel>: View {
     
     @ObservedObject var viewModel: ViewModel
-    
-    let white = Color.white
+    var cancellables: [AnyCancellable] = []
     
     init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        VStack {
-            Image("Icon")
-                .renderingMode(.template)
-                .foregroundColor(.cyan)
-                .padding(.bottom)
-                .padding(.leading, Spacing.smaller)
-            Button(Buttons.login, action: viewModel.login)
-                .buttonStyle(.borderedProminent)
-                .frame(maxWidth: .infinity)
-                .padding()
-            
-            switch viewModel.loginStatus {
-            case .success:
-                Text("Sucess")
-            case .fallback:
-                Text("Failure")
-            case .none:
-                EmptyView()
+        NavigationStack(path: $viewModel.path) {
+            VStack {
+                Image("Icon")
+                    .renderingMode(.template)
+                    .foregroundColor(.cyan)
+                    .padding(.bottom)
+                    .padding(.leading, Spacing.smaller)
+                Button(Buttons.login, action: viewModel.login)
+                    .buttonStyle(.borderedProminent)
+                    .frame(maxWidth: .infinity) 
+                    .padding()
+            }
+            .padding()
+            .navigationDestination(for: LoginRoutes.self) { route in
+                switch route {
+                case .fallback:
+                    PinFallbackViewFactory.makePinFallbackView()
+                }
             }
         }
-        .padding()
     }
 }
 
