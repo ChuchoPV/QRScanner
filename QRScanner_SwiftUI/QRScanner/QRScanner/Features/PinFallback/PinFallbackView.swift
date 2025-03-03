@@ -10,7 +10,6 @@ import SwiftUI
 struct PinFallbackViewView<ViewModel: PinFallbackViewViewModel>: View {
     
     @ObservedObject var viewModel: ViewModel
-    @FocusState private var focusedField: Int?
     
     let white = Color.white
     
@@ -22,19 +21,9 @@ struct PinFallbackViewView<ViewModel: PinFallbackViewViewModel>: View {
         VStack {
             Header(title: Titles.enterPinTitle,
                    subtitle: Titles.enterPinSubtitle)
-            HStack(spacing: Spacing.smaller) {
-                ForEach(0..<viewModel.digits.count, id: \.self) { index in
-                    OTPDigitView(
-                        text: $viewModel.digits[index],
-                        isActive: focusedField == index
-                    )
-                    .focused($focusedField, equals: index)
-                    .onChange(of: viewModel.digits[index]) { newValue in
-                        processOTPInput(at: index, newValue: newValue)
-                    }
-                }
-            }
-            .padding()
+            
+            OTPView(digits: $viewModel.digits)
+                .padding()
             
             Spacer()
             
@@ -47,26 +36,6 @@ struct PinFallbackViewView<ViewModel: PinFallbackViewViewModel>: View {
             
         }
         .padding()
-        .onAppear {
-            focusedField = 0
-        }
-    }
-    
-    private func processOTPInput(at index: Int, newValue: String) {
-        
-        print("index: \(index) with newValue: \(newValue)")
-        guard newValue.count <= 1 else {
-            viewModel.digits[index] = String(newValue.suffix(1))
-            return
-        }
-        
-        if newValue.count == 1 && index < 5 {
-            focusedField = index + 1
-        }
-        
-        if newValue.isEmpty && index > 0 {
-            focusedField = index - 1
-        }
     }
 }
 
