@@ -28,23 +28,23 @@ class LoginViewViewModel: ObservableObject {
 extension LoginViewViewModel {
     
     func login() {
+        
+        guard QRScannerUserDefaults.hasCreatePin else {
+            AppRootManager.shared.currentRoot = .onboarding
+            return
+        }
+    
         dependencies.login.execute()
             .receive(on: RunLoop.main)
-            .sink { [weak self] completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self?.error = error
+            .sink(receiveValue: { [weak self] status in
+                
+                guard let self else {
+                    return
                 }
-            } receiveValue: { [weak self] status in
-                switch status {
-                case .fallback:
-                    self?.path.append(.fallback)
-                default:
-                    break
-                }
-            }
+                
+                
+                self.path.append(.fallback)
+            })
             .store(in: &cancellables)
     }
 }

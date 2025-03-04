@@ -27,13 +27,7 @@ struct PinFallbackViewView<ViewModel: PinFallbackViewViewModel>: View {
             
             Spacer()
             
-            Button(action: viewModel.validateOTP) {
-                Text(Buttons.validatePIN)
-                    .font(.title3.bold())
-                    .frame(maxWidth: .infinity, maxHeight: Spacing.extraLarge)
-            }
-            .buttonStyle(.borderedProminent)
-            
+            CustomButton(label: Buttons.validatePIN, action: viewModel.validateOTP)
         }
         .padding()
     }

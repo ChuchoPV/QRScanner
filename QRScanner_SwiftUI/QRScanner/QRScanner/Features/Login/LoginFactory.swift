@@ -18,6 +18,6 @@ struct LoginViewFactory {
         let dependencies = LoginViewDependencies(login: login)
         let viewModel = LoginViewViewModel(dependencies: dependencies)
 
-        return LoginViewView(viewModel: viewModel)
+        return LoginView(viewModel: viewModel)
     }
 }

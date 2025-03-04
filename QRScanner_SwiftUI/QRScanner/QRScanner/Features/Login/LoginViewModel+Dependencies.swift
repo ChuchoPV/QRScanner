@@ -14,5 +14,6 @@ struct LoginViewDependencies {
 
 enum LoginRoutes: String {
     case fallback
+    case createPin
 }
 

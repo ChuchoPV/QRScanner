@@ -18,5 +18,6 @@ final class AppRootManager: ObservableObject {
     enum Roots {
         case login
         case dashboard
+        case onboarding
     }
 }

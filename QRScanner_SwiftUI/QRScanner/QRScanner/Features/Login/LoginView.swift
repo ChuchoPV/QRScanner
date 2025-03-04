@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct LoginViewView<ViewModel: LoginViewViewModel>: View {
+struct LoginView<ViewModel: LoginViewViewModel>: View {
     
     @ObservedObject var viewModel: ViewModel
     var cancellables: [AnyCancellable] = []
@@ -20,21 +20,25 @@ struct LoginViewView<ViewModel: LoginViewViewModel>: View {
     var body: some View {
         NavigationStack(path: $viewModel.path) {
             VStack {
+                Spacer()
                 Image("Icon")
                     .renderingMode(.template)
                     .foregroundColor(.cyan)
                     .padding(.bottom)
                     .padding(.leading, Spacing.smaller)
-                Button(Buttons.login, action: viewModel.login)
-                    .buttonStyle(.borderedProminent)
-                    .frame(maxWidth: .infinity) 
-                    .padding()
+                
+                Spacer()
+                
+                CustomButton(label: Buttons.login, action: viewModel.login)
+                .padding()
             }
             .padding()
             .navigationDestination(for: LoginRoutes.self) { route in
                 switch route {
                 case .fallback:
                     PinFallbackViewFactory.makePinFallbackView()
+                case .createPin:
+                    Text("Create pin view")
                 }
             }
         }

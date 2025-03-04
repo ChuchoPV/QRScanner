@@ -14,14 +14,14 @@ enum LoginStatus {
 }
 
 protocol LoginUseCaseType {
-    func execute() -> AnyPublisher<LoginStatus, Error>
+    func execute() -> AnyPublisher<LoginStatus, Never>
 }
 
 struct LoginUseCase: LoginUseCaseType {
     
     private let context = LAContext()
     
-    func execute() -> AnyPublisher<LoginStatus, Error> {
+    func execute() -> AnyPublisher<LoginStatus, Never> {
         Deferred {
             Future { promise in
                 var error: NSError?

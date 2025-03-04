@@ -21,6 +21,8 @@ struct ContentView: View {
                 
             case .dashboard:
                 Text("Dashboard")
+            case .onboarding:
+                Text("Onboarding")
             }
         }.environmentObject(appRootManager)
     }
