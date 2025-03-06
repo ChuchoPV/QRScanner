@@ -1,0 +1,10 @@
+/* 
+  Errors.strings
+  QRScanner
+
+  Created by Jesus Perea on 3/4/25.
+  
+*/
+
+
+"error.pinCannotEncoded" = "PIN cannot be encoded";

@@ -5,15 +5,15 @@
 //  Created by Jesus Perea on 2025-03-01
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 class LoginViewViewModel: ObservableObject {
     
     // MARK: Properties
+    @Published var navigation = NavigationPath()
     @Published var isLoading = false
     @Published var error: Error?
-    @Published var path = [LoginRoutes]()
     
     // MARK: Private
     var cancellables: [AnyCancellable] = []
@@ -30,10 +30,10 @@ extension LoginViewViewModel {
     func login() {
         
         guard QRScannerUserDefaults.hasCreatePin else {
-            AppRootManager.shared.currentRoot = .onboarding
+            self.navigation.append(LoginDestination.onboarding)
             return
         }
-    
+        
         dependencies.login.execute()
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self] status in
@@ -42,8 +42,7 @@ extension LoginViewViewModel {
                     return
                 }
                 
-                
-                self.path.append(.fallback)
+                self.navigation.append(LoginDestination.fallback)
             })
             .store(in: &cancellables)
     }

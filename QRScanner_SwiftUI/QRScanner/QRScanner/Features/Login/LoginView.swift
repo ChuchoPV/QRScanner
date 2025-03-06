@@ -18,7 +18,7 @@ struct LoginView<ViewModel: LoginViewViewModel>: View {
     }
     
     var body: some View {
-        NavigationStack(path: $viewModel.path) {
+        NavigationStack(path: $viewModel.navigation) {
             VStack {
                 Spacer()
                 Image("Icon")
@@ -29,16 +29,22 @@ struct LoginView<ViewModel: LoginViewViewModel>: View {
                 
                 Spacer()
                 
-                CustomButton(label: Buttons.login, action: viewModel.login)
+                CustomButton(label: Buttons.login,
+                             isLoading: $viewModel.isLoading,
+                             action: viewModel.login)
                 .padding()
             }
             .padding()
-            .navigationDestination(for: LoginRoutes.self) { route in
-                switch route {
+            .navigationDestination(for: LoginDestination.self) { destination in
+                switch destination {
+                case .home:
+                    Text("Home")
+                case .onboarding:
+                    OnboardingFactory.makeOnboarding()
+                    .navigationBarBackButtonHidden()
                 case .fallback:
                     PinFallbackViewFactory.makePinFallbackView()
-                case .createPin:
-                    Text("Create pin view")
+                        .navigationBarBackButtonHidden()
                 }
             }
         }

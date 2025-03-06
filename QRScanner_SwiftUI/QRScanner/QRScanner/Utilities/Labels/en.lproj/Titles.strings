@@ -8,3 +8,5 @@
 
 "title.enterPinTitle" = "Enter your pin";
 "title.enterPinSubtitle" = "We need you pin to allow access to the scanner";
+"title.createPinTitle" = "Let's create your pin";
+"title.createPinSubtitle" = "We could keep your scans safe by setting a pin";

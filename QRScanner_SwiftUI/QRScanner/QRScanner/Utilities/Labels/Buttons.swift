@@ -11,4 +11,5 @@ enum Buttons {
     
     static let login = "btn.login".localized(from: .buttons)
     static let validatePIN = "btn.validatePIN".localized(from: .buttons)
+    static let setupPIN = "btn.setupPIN".localized(from: .buttons)
 }

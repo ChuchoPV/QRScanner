@@ -22,22 +22,21 @@ struct LoginUseCase: LoginUseCaseType {
     private let context = LAContext()
     
     func execute() -> AnyPublisher<LoginStatus, Never> {
-        Deferred {
-            Future { promise in
-                var error: NSError?
-                
-                if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                    context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: Labels.authRequired) { success, error in
-                        if success {
-                            promise(.success(.success))
-                        } else {
-                            promise(.success(.fallback))
-                        }
+        Future { promise in
+            var error: NSError?
+            
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: Labels.authRequired) { success, error in
+                    if success {
+                        promise(.success(.success))
+                    } else {
+                        promise(.success(.fallback))
                     }
-                } else {
-                    promise(.success(.fallback))
                 }
+            } else {
+                promise(.success(.fallback))
             }
+            
         }.eraseToAnyPublisher()
     }
 }

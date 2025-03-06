@@ -27,7 +27,9 @@ struct PinFallbackViewView<ViewModel: PinFallbackViewViewModel>: View {
             
             Spacer()
             
-            CustomButton(label: Buttons.validatePIN, action: viewModel.validateOTP)
+            CustomButton(label: Buttons.validatePIN,
+                         isLoading: $viewModel.isLoading,
+                         action: viewModel.validateOTP)
         }
         .padding()
     }

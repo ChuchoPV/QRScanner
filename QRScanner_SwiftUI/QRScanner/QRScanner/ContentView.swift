@@ -9,22 +9,8 @@ import Combine
 import SwiftUI
 
 struct ContentView: View {
-    
-    @State var cancellable = Set<AnyCancellable>()
-    @StateObject private var appRootManager = AppRootManager.shared
-    
     var body: some View {
-        Group {
-            switch appRootManager.currentRoot {
-            case .login:
-                LoginViewFactory.makeLoginView()
-                
-            case .dashboard:
-                Text("Dashboard")
-            case .onboarding:
-                Text("Onboarding")
-            }
-        }.environmentObject(appRootManager)
+        LoginViewFactory.makeLoginView()
     }
 }
 

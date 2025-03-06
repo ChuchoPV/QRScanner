@@ -12,8 +12,8 @@ struct LoginViewDependencies {
     let login: LoginUseCaseType
 }
 
-enum LoginRoutes: String {
+enum LoginDestination: Hashable {
+    case home
+    case onboarding
     case fallback
-    case createPin
 }
-

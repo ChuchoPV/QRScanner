@@ -41,7 +41,6 @@ struct OTPView: View {
         }
         
         if newValue.isEmpty && index > 0 {
-            print("Here")
             focusedField = index - 1
         }
     }

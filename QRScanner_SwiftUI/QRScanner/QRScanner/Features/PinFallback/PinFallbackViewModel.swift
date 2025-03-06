@@ -23,8 +23,12 @@ class PinFallbackViewViewModel: ObservableObject {
         self.dependencies = dependencies
     }
     
+    private var pin: String {
+        digits.joined()
+    }
+    
     private var isOTPComplete: Bool {
-        digits.allSatisfy { $0.count == 1 } && digits.joined().count == 6
+        digits.allSatisfy { $0.count == 1 } && pin.count == 6
     }
 }
 

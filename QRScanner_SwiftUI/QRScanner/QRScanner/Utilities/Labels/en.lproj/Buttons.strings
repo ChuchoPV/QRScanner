@@ -8,3 +8,4 @@
 
 "btn.login" = "Login";
 "btn.validatePIN" = "Validate Pin";
+"btn.setupPIN" = "Setup Pin";
